@@ -19,6 +19,11 @@
 </form>
 
 <h1>Products</h1>
+
+<form class="form-inline" asp-action="Query" method="get">
+<input type="number" name="price"/>
+<input type="submit" class="btn btn-primary" value="Query"/>
+</form>
 <table class="table table-bordered">
     <tr>
         <th>RowKey</th>
