@@ -5,13 +5,17 @@
 }
 @model Product
 <h2>Add Product</h2>
-<form class="form-inline" asp-action="Create" method="post" enctype="application/x-www-form-urlencoded"> 
+<form class="form-inline" asp-action=@(ViewBag.isUpdate ? "Update" : "Create") method="post" enctype="application/x-www-form-urlencoded"> 
   <input class="form-control mr-1" asp-for="Name" placeholder="Product Name"/>
     <input class="form-control mr-1" asp-for="Price" placeholder="Product Price" />
     <input class="form-control mr-1" asp-for="Stock" placeholder="Product Stock" />
     <input class="form-control mr-1" asp-for="Color" placeholder="Product Color" />
 
-   <input class="btn btn-primary" type="submit" value="Save Product"/>
+    <input type ="hidden" asp-for="RowKey"/>
+    <input type="hidden" asp-for="PartitionKey"/>
+    <input type="hidden" asp-for="ETag" />
+
+   <input class="btn btn-primary" type="submit" value="@(ViewBag.isUpdate ? "Update" : "Save")"/>
 </form>
 
 <h1>Products</h1>
@@ -24,6 +28,8 @@
     <th>Stock</th>
     <th>Color</th>
     <th>TimeStamp</th>
+    <th>Actions</th>
+    
   </tr>
 
 @foreach (var item in ViewBag.products as List<Product>)
@@ -36,6 +42,9 @@
             <td>@item.Stock</td>
             <td>@item.Color</td>
             <td>@item.Timestamp</td>
+            <td>
+                <a class="btn btn-primary" asp-action="Update" asp-controller="TableStorages" asp-route-rowKey="@item.RowKey" asp-route-partitionKey="@item.PartitionKey"> Update</a>
+            </td>
           </tr>
     
 }
