@@ -21,34 +21,54 @@ namespace TAO.AzureStorage.Services
 
             _cloudTable.CreateIfNotExists();
         }
-        public Task<TEntity> Add(TEntity entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
-            throw new NotImplementedException();
+
+            var operation = TableOperation.InsertOrMerge(entity);
+
+            var execute = await _cloudTable.ExecuteAsync(operation);
+
+            return execute.Result as TEntity;
+
         }
 
-        public Task Delete(string rowKey, string partitionKey)
+        public async Task Delete(string rowKey, string partitionKey)
         {
-            throw new NotImplementedException();
+            var entity = await Get(rowKey, partitionKey);
+
+            var operation = TableOperation.Delete(entity);
+
+            await _cloudTable.ExecuteAsync(operation);
         }
 
-        public Task<TEntity> Get(string rowKey, string partitionKey)
+        public async Task<TEntity> Get(string rowKey, string partitionKey)
         {
-            throw new NotImplementedException();
+            var operation = TableOperation.Retrieve<TEntity>(rowKey, partitionKey);
+
+            var execute = await _cloudTable.ExecuteAsync(operation);
+
+            return execute.Result as TEntity;
         }
 
-        public Task<IQueryable<TEntity>> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _cloudTable.CreateQuery<TEntity>().AsQueryable();
         }
 
         public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> query)
         {
-            throw new NotImplementedException();
+
+            return _cloudTable.CreateQuery<TEntity>().Where(query);
+
         }
 
-        public Task<TEntity> Update(TEntity entity)
+        public async Task<TEntity> Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var operation = TableOperation.Replace(entity);
+
+            var execute = await _cloudTable.ExecuteAsync(operation);
+
+            return execute.Result as TEntity;
         }
     }
 }

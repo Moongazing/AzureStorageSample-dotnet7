@@ -13,7 +13,7 @@ namespace TAO.AzureStorage
         Task Delete(string rowKey, string partitionKey);
         Task<TEntity> Update(TEntity entity);
         Task<TEntity> Get(string rowKey, string partitionKey);
-        Task<IQueryable<TEntity>> GetAll();
+       IQueryable<TEntity> GetAll();
         IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> query);
 
     }
