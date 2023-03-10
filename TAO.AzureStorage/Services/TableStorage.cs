@@ -39,6 +39,9 @@ namespace TAO.AzureStorage.Services
             var operation = TableOperation.Delete(entity);
 
             await _cloudTable.ExecuteAsync(operation);
+           
+
+
         }
 
         public async Task<TEntity> Get(string rowKey, string partitionKey)

@@ -48,6 +48,12 @@ namespace MVCWebApp.Controllers
             await _noSqlStorage.Update(product);
             
             return RedirectToAction("Index");
+        } 
+        [HttpGet]
+        public async Task<IActionResult> Delete(string rowKey, string partitionKey)
+        {
+            await _noSqlStorage.Delete(rowKey,partitionKey);
+            return RedirectToAction("Index");
         }
     }
 }
