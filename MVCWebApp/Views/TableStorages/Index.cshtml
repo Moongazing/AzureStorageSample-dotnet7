@@ -3,10 +3,18 @@
 @{
     ViewData["Title"] = "Index";
 }
+@model Product
+<h2>Add Product</h2>
+<form class="form-inline" asp-action="Create" method="post" enctype="application/x-www-form-urlencoded"> 
+  <input class="form-control mr-1" asp-for="Name" placeholder="Product Name"/>
+    <input class="form-control mr-1" asp-for="Price" placeholder="Product Price" />
+    <input class="form-control mr-1" asp-for="Stock" placeholder="Product Stock" />
+    <input class="form-control mr-1" asp-for="Color" placeholder="Product Color" />
+
+   <input class="btn btn-primary" type="submit" value="Save Product"/>
+</form>
 
 <h1>Products</h1>
-
-
 <table class="table table-bordered">
   <tr>
     <th>RowKey</th>
