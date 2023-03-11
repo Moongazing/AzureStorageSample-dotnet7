@@ -18,13 +18,23 @@ namespace MVCWebApp.Controllers
             string blobUrl = $"{_blobStorage.BlobUrl}/{EContainerName.pictures.ToString()}";
             ViewBag.blobs = names.Select(x => new FileBlob
             {
-                Name= x,
+                Name = x,
                 Url = $"{blobUrl}/x"
 
             }).ToList();
-           
+
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile picture)
+        {
+            var newFileName = Guid.NewGuid().ToString() + Path.GetExtension(picture.FileName);
+
+            await _blobStorage.UploadAsync(picture.OpenReadStream(),newFileName,EContainerName.pictures);
+
+            return RedirectToAction("Index");
 
         }
+
     }
 }
