@@ -8,9 +8,9 @@ namespace TAO.AzureStorage.Enums
 {
     public enum EContainerName
     {
-        Picture,
-        Pdf,
-        Log
+        pictures,
+        pdf,
+        log
 
     }
 }

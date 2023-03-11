@@ -7,9 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-ConnectionStrings.AzureStorageConnectionString = builder.Configuration.GetSection("AzureConnectionsStrings")["StorageConnectionString"];
+ConnectionStrings.AzureStorageConnectionsString = builder.Configuration.GetSection("AzureConnectionsStrings")["StorageCloudConnectionString"];
 
 builder.Services.AddScoped(typeof(INoSqlStorage<>), typeof(TableStorage<>)); 
+
+
+builder.Services.AddSingleton<IBlobStorage,BlobStorage>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

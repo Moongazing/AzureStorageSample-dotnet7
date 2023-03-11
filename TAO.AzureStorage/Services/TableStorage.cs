@@ -14,7 +14,7 @@ namespace TAO.AzureStorage.Services
         private readonly CloudTable _cloudTable;
         public TableStorage()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionStrings.AzureStorageConnectionString);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionStrings.AzureStorageConnectionsString);
 
             _cloudTableClient = storageAccount.CreateCloudTableClient();
             _cloudTable = _cloudTableClient.GetTableReference(typeof(TEntity).Name);

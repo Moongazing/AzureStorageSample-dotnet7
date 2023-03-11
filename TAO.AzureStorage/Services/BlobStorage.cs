@@ -15,7 +15,7 @@ namespace TAO.AzureStorage.Services
         private readonly BlobServiceClient _blobServiceClient;
         public BlobStorage()
         {
-            _blobServiceClient = new BlobServiceClient(ConnectionStrings.AzureStorageConnectionString);
+            _blobServiceClient = new BlobServiceClient(ConnectionStrings.AzureStorageConnectionsString);
         }
 
         public string BlobUrl => "https://moongazingstorageaccount.blob.core.windows.net";
@@ -46,7 +46,7 @@ namespace TAO.AzureStorage.Services
         {
             List<string> logs = new List<string>();
 
-            var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.Log.ToString());
+            var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.log.ToString());
 
             var appendBlobClient = containerClient.GetAppendBlobClient(fileName);
 
@@ -81,14 +81,15 @@ namespace TAO.AzureStorage.Services
 
             blobs.ToList().ForEach(x=>
             {
-                blobNames.Add(x.Name)
+                blobNames.Add(x.Name);
             });
+
             return blobNames;
         }
 
         public async Task SetLog(string text, string fileName)
         {
-            var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.Log.ToString());
+            var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.log.ToString());
 
             var appendBlobClient = containerClient.GetAppendBlobClient(fileName);
 
