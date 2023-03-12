@@ -6,7 +6,7 @@ TAO.AzureStorage.ConnectionStrings.AzureStorageConnectionsString = "DefaultEndpo
 AzQueue queue = new("example");
 
 int operation;
-
+// I am not adding controls for key or null exceptions because I just wants to make a example.
 Console.WriteLine("Select Operation: \n 1-) Send Message \n 2-) Read Message \n 3-) Delete Message");
 operation = Convert.ToInt32(Console.ReadLine());
 if(operation == 1)
