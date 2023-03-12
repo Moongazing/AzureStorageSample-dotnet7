@@ -13,7 +13,7 @@ namespace TAO.AzureStorage
         Task UploadAsync(Stream fileStream,string fileName, EContainerName eContainerName);
         Task<Stream> DowloadAsync(string fileName, EContainerName eContainerName);
         Task DeleteAsync(string fileName, EContainerName eContainerName);
-        Task SetLog(string text, string fileName);
+        Task SetLogAsync(string text, string fileName);
         Task<List<string>> GetLogAsync(string fileName);
         List<string> GetNames(EContainerName eContainerName);
     }

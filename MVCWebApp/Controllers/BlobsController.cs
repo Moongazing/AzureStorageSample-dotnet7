@@ -12,7 +12,7 @@ namespace MVCWebApp.Controllers
         {
             _blobStorage = blobStorage;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var names = _blobStorage.GetNames(EContainerName.pictures);
             string blobUrl = $"{_blobStorage.BlobUrl}/{EContainerName.pictures.ToString()}";
@@ -23,14 +23,20 @@ namespace MVCWebApp.Controllers
 
             }).ToList();
 
+            ViewBag.logs = await _blobStorage.GetLogAsync("log.txt");
+
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile picture)
         {
+            await _blobStorage.SetLogAsync("Upload method start.","log.txt");
+
             var newFileName = Guid.NewGuid().ToString() + Path.GetExtension(picture.FileName);
 
             await _blobStorage.UploadAsync(picture.OpenReadStream(),newFileName,EContainerName.pictures);
+
+            await _blobStorage.SetLogAsync("Upload method end.", "log.txt");
 
             return RedirectToAction("Index");
 

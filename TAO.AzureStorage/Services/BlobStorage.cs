@@ -48,6 +48,8 @@ namespace TAO.AzureStorage.Services
 
             var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.log.ToString());
 
+            await containerClient.CreateIfNotExistsAsync();
+
             var appendBlobClient = containerClient.GetAppendBlobClient(fileName);
 
             await appendBlobClient.CreateIfNotExistsAsync();
@@ -87,7 +89,7 @@ namespace TAO.AzureStorage.Services
             return blobNames;
         }
 
-        public async Task SetLog(string text, string fileName)
+        public async Task SetLogAsync(string text, string fileName)
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient(EContainerName.log.ToString());
 

@@ -6,6 +6,11 @@
 <input type="file" name="picture" />
 <button class="btn btn-primary" type="submit">Save</button>
 </form>
+<h2>Logs</h2>
+@foreach (var item in ViewBag.logs as List<string>)
+{
+    <strong>@item</strong>
+}
 <h1>Files</h1>
 <table class="table table-bordered">
     <tr>
