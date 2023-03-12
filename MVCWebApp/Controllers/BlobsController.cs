@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCWebApp.Models;
-using TAO.AzureStorage;
 using TAO.AzureStorage.Enums;
+using TAO.AzureStorage.Services.Abstract;
 
 namespace MVCWebApp.Controllers
 {

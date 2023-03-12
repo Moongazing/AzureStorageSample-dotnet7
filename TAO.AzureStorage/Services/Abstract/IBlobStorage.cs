@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TAO.AzureStorage.Enums;
 
-namespace TAO.AzureStorage
+namespace TAO.AzureStorage.Services.Abstract
 {
     public interface IBlobStorage
     {
         public string BlobUrl { get; }
-        Task UploadAsync(Stream fileStream,string fileName, EContainerName eContainerName);
+        Task UploadAsync(Stream fileStream, string fileName, EContainerName eContainerName);
         Task<Stream> DowloadAsync(string fileName, EContainerName eContainerName);
         Task DeleteAsync(string fileName, EContainerName eContainerName);
         Task SetLogAsync(string text, string fileName);

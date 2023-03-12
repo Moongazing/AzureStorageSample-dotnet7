@@ -1,5 +1,6 @@
 using TAO.AzureStorage;
-using TAO.AzureStorage.Services;
+using TAO.AzureStorage.Services.Abstract;
+using TAO.AzureStorage.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 

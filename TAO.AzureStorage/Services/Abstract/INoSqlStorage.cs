@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TAO.AzureStorage
+namespace TAO.AzureStorage.Services.Abstract
 {
     public interface INoSqlStorage<TEntity>
     {
@@ -13,7 +13,7 @@ namespace TAO.AzureStorage
         Task Delete(string rowKey, string partitionKey);
         Task<TEntity> Update(TEntity entity);
         Task<TEntity> Get(string rowKey, string partitionKey);
-       IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
         IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> query);
 
     }

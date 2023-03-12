@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TAO.AzureStorage.Enums;
+using TAO.AzureStorage.Services.Abstract;
 
-namespace TAO.AzureStorage.Services
+namespace TAO.AzureStorage.Services.Concrete
 {
     public class BlobStorage : IBlobStorage
     {
@@ -81,7 +82,7 @@ namespace TAO.AzureStorage.Services
 
             var blobs = containerClient.GetBlobs();
 
-            blobs.ToList().ForEach(x=>
+            blobs.ToList().ForEach(x =>
             {
                 blobNames.Add(x.Name);
             });

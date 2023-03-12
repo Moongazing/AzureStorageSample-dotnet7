@@ -5,8 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TAO.AzureStorage.Services.Abstract;
 
-namespace TAO.AzureStorage.Services
+namespace TAO.AzureStorage.Services.Concrete
 {
     public class TableStorage<TEntity> : INoSqlStorage<TEntity> where TEntity : TableEntity, new()
     {
@@ -39,7 +40,7 @@ namespace TAO.AzureStorage.Services
             var operation = TableOperation.Delete(entity);
 
             await _cloudTable.ExecuteAsync(operation);
-           
+
 
 
         }
