@@ -19,7 +19,7 @@ namespace MVCWebApp.Controllers
             ViewBag.blobs = names.Select(x => new FileBlob
             {
                 Name = x,
-                Url = $"{blobUrl}/x"
+                Url = $"{blobUrl}/{x}"
 
             }).ToList();
 
@@ -34,6 +34,13 @@ namespace MVCWebApp.Controllers
 
             return RedirectToAction("Index");
 
+        }
+        [HttpGet]
+        public async Task<IActionResult> Download(string fileName)
+        {
+            var stream = await _blobStorage.DowloadAsync(fileName, EContainerName.pictures);
+
+            return File(stream, "application/octet-stream",fileName);
         }
 
     }
